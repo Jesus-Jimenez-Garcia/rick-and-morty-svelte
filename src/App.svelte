@@ -1,22 +1,27 @@
 <script>
+  import Character from "./lib/Character.svelte";
+
   let characters = [];
-  let page = 1
+  let page = 1;
+
   async function loadCharacters() {
-    const response = await fetch("https://rickandmortyapi.com/api/character?page=" + page);
+    const response = await fetch(
+      "https://rickandmortyapi.com/api/character?page=" + page
+    );
     const data = await response.json();
     characters = data.results;
     console.log(characters);
   }
   loadCharacters();
 
-  function nextPage(){
-    page++
-    loadCharacters()
+  function nextPage() {
+    page++;
+    loadCharacters();
   }
 
-  function previusPage(){
-    page--
-    loadCharacters()
+  function previusPage() {
+    page--;
+    loadCharacters();
   }
 </script>
 
@@ -29,10 +34,6 @@
 
 <div>
   {#each characters as character}
-    <div>
-      <img src={character.image} alt={character.name} />
-      <h1>{character.name}</h1>
-      <h3>{character.species}</h3>
-    </div>
+    <Character character={character} />
   {/each}
 </div>
