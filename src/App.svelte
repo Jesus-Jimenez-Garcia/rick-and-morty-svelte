@@ -25,15 +25,18 @@
   }
 </script>
 
-<h1>Rick and Morty Svelte</h1>
+<h1 class="title">Rick and Morty Svelte</h1>
 
-<div>
-  <button on:click={previusPage} disabled={page === 1}> Previus </button>
-  <button on:click={nextPage}> Next </button>
-</div>
 
-<div>
-  {#each characters as character}
-    <Character character={character} />
-  {/each}
+
+<div class="container">
+  <div class="btns">
+    <button on:click={previusPage} disabled={page === 1} class="btn"> Previus </button>
+    <button on:click={nextPage} class="btn"> Next </button>
+  </div>
+  <div class="grid">
+    {#each characters as character}
+      <Character {character} />
+    {/each}
+  </div>
 </div>
